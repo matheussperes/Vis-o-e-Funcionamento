@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#23262E">
+  <meta name="description" content="Visão e Funcionamento — cockpit pessoal de áreas, projetos e tarefas.">
+  <title>Visão e Funcionamento</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" type="image/png" href="icons/icon-192.png">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="app">
+    <aside id="nav" class="nav hidden" aria-label="Navegação principal">
+      <div class="nav-brand" aria-hidden="true">VF</div>
+      <button class="nav-item" data-rota="#/agora">Agora</button>
+      <button class="nav-item" data-rota="#/hoje">Hoje</button>
+      <button class="nav-item" data-rota="#/semana">Semana</button>
+      <button class="nav-item" data-rota="#/panorama">Panorama</button>
+      <button class="nav-item" id="btn-mais" aria-haspopup="true" aria-expanded="false">Mais</button>
+    </aside>
+
+    <div id="mais-menu" class="mais-menu hidden" role="menu" aria-label="Mais opções">
+      <button class="mais-item" role="menuitem" data-rota="#/metas">Metas</button>
+      <button class="mais-item" role="menuitem" data-rota="#/templates">Templates</button>
+      <button class="mais-item" role="menuitem" data-rota="#/relatorio">Relatório</button>
+      <button class="mais-item" role="menuitem" id="btn-sair">Sair</button>
+    </div>
+
+    <main id="view" class="view" tabindex="-1"></main>
+
+    <button id="btn-mais-rapida" class="fab hidden" aria-label="Criação rápida de tarefa">+</button>
+    <div id="modal-raiz" class="hidden"></div>
+
+    <div id="toast" class="toast hidden" role="status" aria-live="polite"></div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+  <script src="app.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function () {
+        navigator.serviceWorker.register('sw.js');
+      });
+    }
+  </script>
+</body>
+</html>
